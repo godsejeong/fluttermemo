@@ -30,6 +30,7 @@ class AddItemPage extends StatelessWidget{
                   child: SizedBox(
                     height: 30 * 24.0,
                     child : TextField(
+                     
                      maxLines: 30,
                      controller: contentController,
                      decoration: InputDecoration(
@@ -46,8 +47,10 @@ class AddItemPage extends StatelessWidget{
 
     void _SendInfo(){
       debugPrint("click");
-      Todo todo = Todo(titleController.text,contentController.text);
-      Navigator.of(context).pop({"todo" : todo});
+      final String encodedTodos = Todo.encodeTodos([Todo(title : titleController.text,subTitle : contentController.text)]);
+      debugPrint("encodedTodos : $encodedTodos");
+      Todo todos = Todo(title : titleController.text,subTitle : contentController.text);
+      Navigator.of(context).pop({"todo" : todos});
     }
 
     return Scaffold(
